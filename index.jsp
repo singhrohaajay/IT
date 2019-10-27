@@ -20,7 +20,7 @@
 
 	<!-- Header -->
 	<header id="header">
-		<a class="logo" href="index.html">Home Page</a>
+		<a class="logo" href="#">Home Page</a>
 		<nav>
 			<a href="#menu">Menu</a>
 		</nav>
@@ -29,9 +29,9 @@
 	<!-- Nav -->
 	<nav id="menu">
 		<ul class="links">
-			<li><a href="#">Home</a></li>
-			<li><a href="#">Student</a></li>
-			<li><a href="#">Customer</a></li>
+			<li><a href="student.jsp">Student</a></li>
+			<li><a href="customer.jsp">Customer</a></li>
+			<li><a href="product.jsp">Products</a></li>
 		</ul>
 	</nav>
 

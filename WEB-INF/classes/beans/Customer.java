@@ -1,148 +1,101 @@
 package beans;
 
-import java.io.Serializable;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher; 
-
+import java.io.*;
 
 public class Customer implements Serializable {
-	String username;
-	String emailAddress;
+
+	// Form Fields
+	String name;
+	String email;
 	String age;
-	String password;
-	String food[];
-	
-	
-	/**
-	 * @return the food
-	 */
-	public String[] getFood() {
-		return food;
-	}
-	/**
-	 * @param food the food to set
-	 */
-	public void setFood(String[] food) {
-		this.food = food;
-	}
-	boolean userNameValid = false;
-	boolean emailAddressValid = false;
+	// String course;
+	// String roll;
+	// String gender;
+
+	// Validation Flags
+	boolean nameValid = false;
+	boolean emailValid = false;
 	boolean ageValid = false;
-	boolean passwordValid = false;
-	
-	
-	/**
-	 * @return the userNameValid
-	 */
-	public boolean getUserNameValid() {
-		return userNameValid;
+	// boolean courseValid = false;
+	// boolean rollValid = false;
+
+	// Getter functions for properties
+	public boolean getNameValid() {
+		return nameValid;
 	}
-	/**
-	 * @return the emailAddressValid
-	 */
-	public boolean getEmailAddressValid() {
-		return emailAddressValid;
+	public boolean getEmailValid() {
+		return emailValid;
 	}
-	/**
-	 * @return the ageValid
-	 */
 	public boolean getAgeValid() {
 		return ageValid;
 	}
-	/**
-	 * @return the passwordValid
-	 */
-	public boolean getPasswordValid() {
-		return passwordValid;
-	}
+	// public boolean getCourseValid() {
+	// 	return courseValid;
+	// }
+	// public boolean getRollValid() {
+	// 	return rollValid;
+	// }
 
-	public String getUsername() {
-		return username;
+	// Getter for form fields
+	public String getName() {
+		return name;
 	}
-	/**
-	 * @param username the username to set
-	 */
-	public void setUsername(String username) {
-		this.username = username;
-		if(!username.isEmpty())
-		{
-			try {
-				int x = Integer.parseInt(username);
-			}catch(Exception e) {
-				userNameValid = true;
-			}
-		}
-	
+	public String getEmail() {
+		return email;
 	}
-	/**
-	 * @return the emailAddress
-	 */
-	public String getEmailAddress() {
-		return emailAddress;
-	}
-	/**
-	 * @param emailAddress the emailAddress to set
-	 */
-	public void setEmailAddress(String emailAddress) {
-		
-	String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ 
-                "[a-zA-Z0-9_+&*-]+)*@" + 
-                "(?:[a-zA-Z0-9-]+\\.)+[a-z" + 
-                "A-Z]{2,7}$"; 
-                  
-	Pattern pat = Pattern.compile(emailRegex); 
-	if (emailAddress != null && pat.matcher(emailAddress).matches()) 
-	{
-			emailAddressValid = true;
-	}
-
-			
-			
-			
-			
-			
-		this.emailAddress = emailAddress;
-	}
-	/**
-	 * @return the age
-	 */
 	public String getAge() {
 		return age;
 	}
-	/**
-	 * @param age the age to set
-	 */
+	// public String getCourse() {
+	// 	return course;
+	// }
+	// public String getRoll() {
+	// 	return roll;
+	// }
+	// public String getGender() {
+	// 	return gender;
+	// }
+
+
+	// Setter Functions for properties
+	public void setName(String name) {
+		if (!name.isEmpty() && name.matches("^[aA-zZ]{3,30}$")) {
+			nameValid = true;
+			this.name = name;
+		}
+	}
+	public void setEmail(String emailAddr) {
+		if (!emailAddr.isEmpty() && emailAddr.matches("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
+			emailValid = true;
+			this.email = emailAddr;
+		}
+	}
 	public void setAge(String age) {
 		System.out.print(age);
-		int age1 = 0;
+		int parsedAge = 0;
 		try {
-			age1 = Integer.parseInt(age);
-			if(age1>0&&age1<100)
+			parsedAge = Integer.parseInt(age);
+			if (parsedAge > 17 && parsedAge <= 25)
 				ageValid = true;
-		}catch(Exception e) {
-			System.out.print("Error");
+		} catch (Exception e) {
 			ageValid = false;
 		}
-		
-		
 		this.age = age;
 	}
-	/**
-	 * @return the password
-	 */
-	public String getPassword() {
-		return password;
-	}
-	/**
-	 * @param password the password to set
-	 */
-	public void setPassword(String password) {
-		if(password.length()>=6)
-			passwordValid = true;
-		this.password = password;
-	}
-
-	
-	
+	// public void setCourse(String course) {
+	// 	if (!course.isEmpty() && course.matches("^[a-zA-Z. ]+$")) {
+	// 		courseValid = true;
+	// 		this.course = course;
+	// 	}
+	// }
+	// public void setRoll(String roll) {
+	// 	if (!roll.isEmpty()&& roll.matches("^[0-9]{4}$")){
+	// 		rollValid = true;
+	// 		this.roll = roll;
+	// 	}		
+	// }
+	// public void setGender(String gender) {
+	// 		this.gender = gender;		
+	// }
 
 }

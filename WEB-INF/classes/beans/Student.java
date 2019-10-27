@@ -4,201 +4,113 @@ import java.io.*;
 
 public class Student implements Serializable {
 
-	// beans properties
-	String firstName;
-	String lastName;
-	String subjects[];
-	String emailAddr;
-	String gender;
+	// Form Fields
+	String name;
+	String email;
 	String age;
 	String course;
+	String roll;
+	String gender;
 
-	// validation properties
-	boolean firstNameValid = false;
-	boolean lastNameValid = false;
-	boolean emailAddrValid = false;
-	boolean CSSelected = false;
-	boolean phySelected = false;
-	boolean mathsSelected = false;
-	boolean isMale = false;
-	boolean isFemale = false;
+	// Validation Flags
+	boolean nameValid = false;
+	boolean emailValid = false;
 	boolean ageValid = false;
+	boolean courseValid = false;
+	boolean rollValid = false;
+	boolean male=false;
+	boolean female=false;
 
-	boolean courseValid=false;
-
-	public String getGender() {
-		return gender;
+	// Getter functions for properties
+	public boolean getNameValid() {
+		return nameValid;
 	}
-
-	public void setGender(String gender) {
-		if (gender.equals("male"))
-			isMale = true;
-		else
-			isFemale = true;
-		this.gender = gender;
+	public boolean getEmailValid() {
+		return emailValid;
 	}
-
-	public boolean getIsMale() {
-		return isMale;
-	}
-
-	public boolean getIsFemale() {
-		return isFemale;
-	}
-
-	/**
-	 * @return the firstNameValid
-	 */
-	public boolean getFirstNameValid() {
-		return firstNameValid;
-	}
-
-	/**
-	 * @return the ageValid
-	 */
 	public boolean getAgeValid() {
 		return ageValid;
 	}
-	/**
-	 * @return the ageValid
-	 */
 	public boolean getCourseValid() {
 		return courseValid;
 	}
+	public boolean getRollValid() {
+		return rollValid;
+	}
+	public boolean getMale() {
+		return male;
+	}
+	public boolean getFemale() {
+		return female;
+	}
 
-	/**
-	 * @return the age
-	 */
+	// Getter for form fields
+	public String getName() {
+		return name;
+	}
+	public String getEmail() {
+		return email;
+	}
 	public String getAge() {
 		return age;
 	}
-
-	/**
-	 * @param age the age to set
-	 */
-	public void setAge(String age) {
-		System.out.print(age);
-		int age1 = 0;
-		try {
-			age1 = Integer.parseInt(age);
-			if (age1 > 0 && age1 < 100)
-				ageValid = true;
-		} catch (Exception e) {
-			System.out.print("Error");
-			ageValid = false;
-		}
-
-		this.age = age;
-	}
-
-	/**
-	 * @return the age
-	 */
 	public String getCourse() {
 		return course;
 	}
-
-	/**
-	 * @param age the age to set
-	 */
-	public void setCourse(String course) {
-		System.out.print(course);
-		this.course = course;
+	public String getRoll() {
+		return roll;
 	}
-
-	/**
-	 * @return the lastNameValid
-	 */
-	public boolean getLastNameValid() {
-		return lastNameValid;
+	public String getGender() {
+		return gender;
 	}
+	
 
-	/**
-	 * @return the emailAddrValid
-	 */
-	public boolean getEmailAddrValid() {
-		return emailAddrValid;
-	}
 
-	/**
-	 * @return the cSSelected
-	 */
-	public boolean getCSSelected() {
-		return CSSelected;
-	}
-
-	/**
-	 * @return the phySelected
-	 */
-	public boolean getPhySelected() {
-		return phySelected;
-	}
-
-	/**
-	 * @return the mathsSelected
-	 */
-	public boolean getMathsSelected() {
-		return mathsSelected;
-	}
-
-	public String getEmailAddr() {
-		return emailAddr;
-	}
-
-	public void setEmailAddr(String emailAddr) {
-		if (!emailAddr.isEmpty())
-			emailAddrValid = true;
-		this.emailAddr = emailAddr;
-	}
-
-	public Student() {
-
-	}
-
-	public String[] getSubjects() {
-
-		return subjects;
-	}
-
-	public void setSubjects(String[] subjects) {
-
-		for (int i = 0; i < subjects.length; i++) {
-
-			if (subjects[i].contentEquals("CS")) {
-				System.out.println("Selected");
-				CSSelected = true;
-			}
-
-			else if (subjects[i].contentEquals("phy")) {
-				phySelected = true;
-			}
-
-			else if (subjects[i].contentEquals("maths")) {
-				mathsSelected = true;
-			}
-
+	// Setter Functions for properties
+	public void setName(String name) {
+		if (!name.isEmpty() && name.matches("^[aA-zZ]{3,30}$")) {
+			nameValid = true;
+			this.name = name;
 		}
-
-		this.subjects = subjects;
+	}
+	public void setEmail(String emailAddr) {
+		if (!emailAddr.isEmpty() && emailAddr.matches("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
+			emailValid = true;
+			this.email = emailAddr;
+		}
+	}
+	public void setAge(String age) {
+		System.out.print(age);
+		int parsedAge = 0;
+		try {
+			parsedAge = Integer.parseInt(age);
+			if (parsedAge > 17 && parsedAge < 25)
+				ageValid = true;
+		} catch (Exception e) {
+			ageValid = false;
+		}
+		this.age = age;
+	}
+	public void setCourse(String course) {
+		if (!course.isEmpty() && course.matches("^[a-zA-Z. ]+$")) {
+			courseValid = true;
+			this.course = course;
+		}
+	}
+	public void setRoll(String roll) {
+		if (!roll.isEmpty()&& roll.matches("^[0-9]{4}$")){
+			rollValid = true;
+			this.roll = roll;
+		}		
+	}
+	public void setGender(String gender) {
+		if(gender.equals("male")){
+			this.male=true;
+		}
+		if(gender.equals("female")){
+			this.female=true;
+		}
+			this.gender = gender;		
 	}
 
-	public void setFirstName(String firstName) {
-		if (!firstName.isEmpty())
-			firstNameValid = true;
-		this.firstName = firstName;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setLastName(String lastName) {
-		if (!lastName.isEmpty())
-			lastNameValid = true;
-		this.lastName = lastName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
 }
