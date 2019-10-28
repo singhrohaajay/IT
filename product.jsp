@@ -54,7 +54,8 @@
                             Create dynamically generated Web content with Java Servlets</p>
                         <form action="product.jsp" method="POST">
                             <input type="hidden" name="id" value="0">
-                            <button type="submit" class="btn btn-primary" name="products" value="JSP 2.0">
+                            <button type="submit" class="btn ${customerBean.getId(0)? 'btn-success':'btn-primary'}"
+                                name="products" value="JSP 2.0">
                                 <c:choose>
                                     <c:when test="${!customerBean.getId(0)}">Buy
                                     </c:when>
@@ -76,7 +77,19 @@
                         <h4 class="card-title"><a>Web Application</a></h4>
                         <p class="card-text">Web application using JSP is a text book and reference for the people who
                             wish to learn</p>
-                        <a href="customer.jsp" class="btn btn-primary">Buy</a>
+                        <form action="product.jsp" method="POST">
+                            <input type="hidden" name="id" value="1">
+                            <button type="submit" class="btn ${customerBean.getId(1)? 'btn-success':'btn-primary'}"
+                                name="products" value="Web Application">
+                                <c:choose>
+                                    <c:when test="${!customerBean.getId(1)}">Buy
+                                    </c:when>
+                                    <c:otherwise>
+                                        Added to Cart
+                                    </c:otherwise>
+                                </c:choose>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -89,7 +102,19 @@
                         <h4 class="card-title"><a>Web Development</a></h4>
                         <p class="card-text">Web Technologies: HTML, JAVASCRIPT, PHP, JAVA, JSP, ASP.NET, XML and Ajax,
                             Black Book: HTML</p>
-                        <a href="customer.jsp" class="btn btn-primary">Buy</a>
+                        <form action="product.jsp" method="POST">
+                            <input type="hidden" name="id" value="2">
+                            <button type="submit" class="btn ${customerBean.getId(2)? 'btn-success':'btn-primary'}"
+                                name="products" value="Web Development">
+                                <c:choose>
+                                    <c:when test="${!customerBean.getId(2)}">Buy
+                                    </c:when>
+                                    <c:otherwise>
+                                        Added to Cart
+                                    </c:otherwise>
+                                </c:choose>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -102,7 +127,19 @@
                         <h4 class="card-title"><a>Java Servlet</a></h4>
                         <p class="card-text">Java Servlet & JSP Cookbook: Practical Solutions to Real World Problems
                             Java Servlet & JSP Cookbook: Practical Solutions to Real World Problems</p>
-                        <a href="customer.jsp" class="btn btn-primary">Buy</a>
+                        <form action="product.jsp" method="POST">
+                            <input type="hidden" name="id" value="3">
+                            <button type="submit" class="btn ${customerBean.getId(3)? 'btn-success':'btn-primary'}"
+                                name="products" value="Java Servlet">
+                                <c:choose>
+                                    <c:when test="${!customerBean.getId(3)}">Buy
+                                    </c:when>
+                                    <c:otherwise>
+                                        Added to Cart
+                                    </c:otherwise>
+                                </c:choose>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -115,7 +152,19 @@
                         <h4 class="card-title"><a>Head First</a></h4>
                         <p class="card-text">Head First Servlets & JSP: Passing the Sun Certified Web Component
                             Developer Exam</p>
-                        <a href="customer.jsp" class="btn btn-primary">Buy</a>
+                        <form action="product.jsp" method="POST">
+                            <input type="hidden" name="id" value="4">
+                            <button type="submit" class="btn ${customerBean.getId(4)? 'btn-success':'btn-primary'}"
+                                name="products" value="Head First">
+                                <c:choose>
+                                    <c:when test="${!customerBean.getId(4)}">Buy
+                                    </c:when>
+                                    <c:otherwise>
+                                        Added to Cart
+                                    </c:otherwise>
+                                </c:choose>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -127,19 +176,31 @@
                     <div class="card-body">
                         <h4 class="card-title"><a>Beginning JSP</a></h4>
                         <p class="card-text">Beginning JSP, JSF and Tomcat: Java Web Development, 2ed (APRESS)</p>
-                        <a href="customer.jsp" class="btn btn-primary">Buy</a>
+                        <form action="product.jsp" method="POST">
+                            <input type="hidden" name="id" value="5">
+                            <button type="submit" class="btn ${customerBean.getId(5)? 'btn-success':'btn-primary'}"
+                                name="products" value="Beginning JSP">
+                                <c:choose>
+                                    <c:when test="${!customerBean.getId(5)}">Buy
+                                    </c:when>
+                                    <c:otherwise>
+                                        Added to Cart
+                                    </c:otherwise>
+                                </c:choose>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <form class="cart-form" action="product.jsp" method="POST">
+    <form class="cart-form" action="" method="POST">
 
         <input type='hidden' name='submitted' value='true'>
-        <h1>Customer</h1>
+        <h1>Checkout</h1>
         <div class="form-field">
             <i class="fa fa-envelope"></i>
-            <input type='text' name='email' value="<c:out value='${param.email}' />" class="form-field"
+            <input type='text' name='email' value="<c:out value='${customerBean.email}' />" class="form-field"
                 placeholder="Confirm Email" /><br>
         </div>
         <c:if test="${param.submitted && empty customerBean.email }">
@@ -147,11 +208,19 @@
         </c:if>
         <div class="form-field">
             <i class="fa fa-calendar"></i>
-            <input type="text" name="date" id="date" value="<c:out value='${param.date}' />" class="form-field"
+            <input type="text" name="date" id="date" value="<c:out value='${customerBean.date}' />" class="form-field"
                 placeholder="Delievery Date ">
         </div>
         <c:if test="${param.submitted && !customerBean.dateValid }">
-            <p>enter date in (dd/mm/yyyy) format</p>
+            <p>enter date in (dd/mm/yyyy) format!</p>
+        </c:if>
+        <div class="form-field">
+            <i class="fa fa-calendar"></i>
+            <textarea name="" id="" disabled value="<c:out value='${customerBean.products}' />"
+                 placeholder="Your Orders here "><c:out value='${customerBean.products}' /></textarea>
+        </div>
+        <c:if test="${param.submitted && empty customerBean.products }">
+            <p>order something!</p>
         </c:if>
         <button type="submit" value="Login" class="btn">Buy Now</button>
 
@@ -163,7 +232,8 @@
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-6">
-                            <h4>Congratulations, Your Order has been placed!</h4>
+                            <h4>Congratulations, Your Order of <c:out value='${customerBean.products}' /> has been placed!</h4>
+                            <a href="index.jsp" class="btn btn-success">Back To Home</a>
                         </div>
                     </div>
                 </div>

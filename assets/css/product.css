@@ -10,7 +10,7 @@
     flex-direction: column;
     align-items: center;
     padding: 1em;
-    background: linear-gradient(135deg, #3498db 0%, #111111 74%) 0/cover fixed;
+    background: linear-gradient(135deg, #3498dbbd 0%, #111111b2 74%) 0/cover fixed;
     color: white;
     border-radius: 10px;
     box-shadow: 0 15px 20px rgba(0, 0, 0, 0.356);

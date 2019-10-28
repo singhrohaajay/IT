@@ -119,17 +119,14 @@ public class Customer implements Serializable {
 	}
 
 	public void setProducts(String p) {
-		this.products += p;
-		this.products += "\n";
+		this.products = p;
 	}
 
 	public void setId(int ids) {
-		//int newid = Integer.parseInt(id);
 		if(this.id[ids]==false){
-			this.id[ids]=false;
+			this.id[ids]=true;
 			return;
 		}
-		this.id[ids]=true;
 
 	}
 
