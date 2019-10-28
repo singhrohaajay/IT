@@ -1,6 +1,9 @@
 package beans;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.text.ParseException;
 
 public class Customer implements Serializable {
 
@@ -8,6 +11,11 @@ public class Customer implements Serializable {
 	String name;
 	String email;
 	String age;
+	String date;
+	String products = "";
+	boolean[] id = new boolean[6];
+
+	
 	// String course;
 	// String roll;
 	// String gender;
@@ -16,6 +24,7 @@ public class Customer implements Serializable {
 	boolean nameValid = false;
 	boolean emailValid = false;
 	boolean ageValid = false;
+	boolean dateValid = false;
 	// boolean courseValid = false;
 	// boolean rollValid = false;
 
@@ -23,39 +32,49 @@ public class Customer implements Serializable {
 	public boolean getNameValid() {
 		return nameValid;
 	}
+
 	public boolean getEmailValid() {
 		return emailValid;
 	}
+
 	public boolean getAgeValid() {
 		return ageValid;
 	}
+
+	public boolean getDateValid() {
+		return dateValid;
+	}
 	// public boolean getCourseValid() {
-	// 	return courseValid;
+	// return courseValid;
 	// }
 	// public boolean getRollValid() {
-	// 	return rollValid;
+	// return rollValid;
 	// }
 
 	// Getter for form fields
 	public String getName() {
 		return name;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public String getAge() {
 		return age;
 	}
-	// public String getCourse() {
-	// 	return course;
-	// }
-	// public String getRoll() {
-	// 	return roll;
-	// }
-	// public String getGender() {
-	// 	return gender;
-	// }
 
+	public String getDate() {
+		return date;
+	}
+
+	public String getProducts() {
+		return products;
+	}
+
+	public boolean getId(int index) {
+		return id[index];
+	}
 
 	// Setter Functions for properties
 	public void setName(String name) {
@@ -64,12 +83,15 @@ public class Customer implements Serializable {
 			this.name = name;
 		}
 	}
+
 	public void setEmail(String emailAddr) {
-		if (!emailAddr.isEmpty() && emailAddr.matches("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
+		if (!emailAddr.isEmpty() && emailAddr
+				.matches("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
 			emailValid = true;
 			this.email = emailAddr;
 		}
 	}
+
 	public void setAge(String age) {
 		System.out.print(age);
 		int parsedAge = 0;
@@ -82,20 +104,35 @@ public class Customer implements Serializable {
 		}
 		this.age = age;
 	}
-	// public void setCourse(String course) {
-	// 	if (!course.isEmpty() && course.matches("^[a-zA-Z. ]+$")) {
-	// 		courseValid = true;
-	// 		this.course = course;
-	// 	}
-	// }
-	// public void setRoll(String roll) {
-	// 	if (!roll.isEmpty()&& roll.matches("^[0-9]{4}$")){
-	// 		rollValid = true;
-	// 		this.roll = roll;
-	// 	}		
-	// }
-	// public void setGender(String gender) {
-	// 		this.gender = gender;		
-	// }
+
+	public void setDate(String date) {
+		SimpleDateFormat sdfrmt = new SimpleDateFormat("dd/MM/yyyy");
+		sdfrmt.setLenient(false);
+		try {
+			Date javaDate = sdfrmt.parse(date);
+			dateValid = true;
+			this.date = date;
+		} catch (ParseException e) {
+			dateValid = false;
+		}
+
+	}
+
+	public void setProducts(String p) {
+		this.products += p;
+		this.products += "\n";
+	}
+
+	public void setId(int ids) {
+		//int newid = Integer.parseInt(id);
+		if(this.id[ids]==false){
+			this.id[ids]=false;
+			return;
+		}
+		this.id[ids]=true;
+
+	}
+
+
 
 }

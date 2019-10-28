@@ -33,7 +33,6 @@
 		<ul class="links">
 			<li><a>Student</a></li>
 			<li><a href="customer.jsp">Customer</a></li>
-			<li><a href="product.jsp">Products</a></li>
 		</ul>
 	</nav>
 	<jsp:useBean id='studentBean' class="beans.Student">

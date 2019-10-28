@@ -1,0 +1,93 @@
+.card {
+    margin-bottom: 10px;
+    ;
+}
+
+.cart-form {
+    margin: 10px auto;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    background: linear-gradient(135deg, #3498db 0%, #111111 74%) 0/cover fixed;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.356);
+    width: 500px;
+    height: auto;
+}
+
+.cart-form input {
+    margin: 10px 0;
+    width: 80%;
+}
+
+.cart-form .btn {
+    position: relative;
+    outline: none;
+    background: transparent;
+    color: white;
+    border: 2px solid #3398db;
+    width: 80%;
+    font-size: 1.2em;
+    margin: 36px 0 18px 0;
+    padding: 6px 0;
+    cursor: pointer;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.cart-form .btn::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(120deg, transparent, rgba(51, 152, 219, 0.5), transparent);
+    transform: translateX(-100%);
+    transition: 0.3s;
+}
+
+.cart-form .btn:hover {
+    box-shadow: 0 0 20px 10px rgba(51, 152, 219, 0.274);
+}
+
+.cart-form .btn:hover::before {
+    transform: translateX(100%);
+}
+
+.cart-form p {
+    color: red;
+}
+
+.output {
+    position: fixed;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    align-items: center;
+    background: white;
+    z-index: 100;
+    font-family: "Poppins";
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    overflow: none;
+}
+
+.output .container {
+    border-radius: 15px;
+    box-shadow: 2px 6px 8px 3px rgb(168, 166, 166);
+    margin: 20px;
+    background: linear-gradient(135deg, #3498db 0%, #111111 74%) 0/cover fixed;
+    color: white;
+}
+.output .container .row, .row .col-6{
+    margin: 30px;
+}

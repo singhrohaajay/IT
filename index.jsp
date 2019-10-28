@@ -31,7 +31,6 @@
 		<ul class="links">
 			<li><a href="student.jsp">Student</a></li>
 			<li><a href="customer.jsp">Customer</a></li>
-			<li><a href="product.jsp">Products</a></li>
 		</ul>
 	</nav>
 

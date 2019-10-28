@@ -5,7 +5,7 @@
 <html>
 
 <head>
-    <title>Student Login</title>
+    <title>Customer Login</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -36,7 +36,6 @@
         <ul class="links">
             <li><a href="student.jsp">Student</a></li>
             <li><a >Customer</a></li>
-            <li><a href="product.jsp">Products</a></li>
         </ul>
     </nav>
     <jsp:useBean id='customerBean' class="beans.Customer">
@@ -72,7 +71,16 @@
         <c:if test="${param.submitted && !customerBean.ageValid }">
             <p>enter age b/w 17 and 25</p>
         </c:if>
-        <button type="submit" value="Login" class="btn">Let's Go</button>
+        <div class="form-field">
+            <i class="fa fa-calendar" ></i>
+            <input type="text" name="date" id="date" value="<c:out value='${param.date}' />" class="form-field"
+                placeholder=" ">
+            <label for="date">Date</label>
+        </div>
+        <c:if test="${param.submitted && !customerBean.dateValid }">
+            <p>enter date in (dd/mm/yyyy) format</p>
+        </c:if>
+        <button type="submit" value="Login" class="btn" >Let's Go</button>
 
     </form>
 
@@ -88,7 +96,8 @@
                 <b>Age =</b>
                 <c:out value="${customerBean.age}" /><br>
                 <br>
-                <a class="btn btn-primary" type="submit" href="product.jsp">Products</a>
+                <a class="btn btn-primary" type="submit" href="product.jsp"><i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                     Shop Now</a>
             </c:if>
         </center>
     </div>
